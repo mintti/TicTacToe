@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -66,5 +67,6 @@ public class TestNetwork : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("방 입장 완료");
+        GameManager.Instance.CompleteConnectServer();
     }
 }

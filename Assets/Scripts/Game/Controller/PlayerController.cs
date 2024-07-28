@@ -16,12 +16,7 @@ namespace Game.Controller
     {
         [Header("Setting")]
         [SerializeField] private Controller     _eController;
-        [SerializeField] private PlayerMovement _movement;
-
-        public void Start()
-        {
-            Init();
-        }
+        [SerializeField] private MovementHandler _movement;
 
         public void Init()
         {
@@ -38,7 +33,8 @@ namespace Game.Controller
                     Debug.Log("컨트롤러 지정 필요");
                     break;
             }
-
+            
+            _movement.Init();
             controller?.Init(_movement);
         }
     }

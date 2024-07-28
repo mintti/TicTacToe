@@ -2,6 +2,6 @@
 {
     public interface IController
     {
-        void Init(PlayerMovement movement);
+        void Init(MovementHandler movement);
     }
 }

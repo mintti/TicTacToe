@@ -5,12 +5,12 @@ namespace Game.Controller
 {
     public class MouseController : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IController
     {
-        private PlayerMovement _movement;
+        private MovementHandler _movementHandler;
         private Vector2        _startPos;
 
-        public void Init(PlayerMovement movement)
+        public void Init(MovementHandler movementHandler)
         {
-            _movement = movement;
+            _movementHandler = movementHandler;
         }
     
         public void OnBeginDrag(PointerEventData eventData)
@@ -34,7 +34,7 @@ namespace Game.Controller
         {
             var posX = movePos.x;
             var eInput = posX == 0 ? EMoveType.None : (posX < 0 ? EMoveType.Right : EMoveType.Left);
-            _movement.UpdateMovePos(eInput);
+            _movementHandler.SendData((eInput));
         }
     }
 }

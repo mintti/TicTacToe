@@ -9,11 +9,6 @@ public class Ball : MonoBehaviour
     [SerializeField] private float       _speed;
     [SerializeField] private Vector2     _defaultDir;
 
-    private void Start()
-    {
-        Init();
-    }
-    
     public void Init()
     {
         _rigidbody.velocity = _defaultDir.normalized * _speed;

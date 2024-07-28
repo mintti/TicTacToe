@@ -4,10 +4,10 @@ namespace Game.Controller
 {
     public class KeyboardController : MonoBehaviour, IController
     {
-        private PlayerMovement _movement;
-        public void Init(PlayerMovement movement)
+        private MovementHandler _movementHandler;
+        public void Init(MovementHandler movementHandler)
         {
-            _movement = movement;
+            _movementHandler = movementHandler;
         }
         
         private void Update()
@@ -36,7 +36,7 @@ namespace Game.Controller
 
         private void SendInputInfo(EMoveType eType)
         {
-            _movement.UpdateMovePos(eType);
+            _movementHandler.SendData(eType);
         }
     }
 }

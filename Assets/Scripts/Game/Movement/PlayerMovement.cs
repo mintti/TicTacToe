@@ -1,4 +1,5 @@
 using Game.Controller;
+using Photon.Pun;
 using Unity.Collections;
 using UnityEngine;
 
@@ -8,19 +9,21 @@ namespace Game
     {
         [ReadOnly, SerializeField] private float _moveX;
         [SerializeField]           private float _speed;
-    
-        
-        private bool _canMoveLeft = true;
-        private bool _canMoveRight = true;
-        
-        /// <summary>
-        /// 움직임 방향을 업데이트
-        /// </summary>
-        public void UpdateMovePos(EMoveType eMove)
+
+        private MovementHandler _handler;
+        private bool            _canMoveLeft = true;
+        private bool            _canMoveRight = true;
+
+        public void Init()
         {
-            _moveX = (int) eMove;
+            _handler = new();
         }
-        
+
+        public void SetMove(EMoveType eMove)
+        {
+            _moveX = (int)eMove;
+        }
+
         private void FixedUpdate()
         {
             ExecuteMove();
