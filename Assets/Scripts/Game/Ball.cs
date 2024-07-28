@@ -44,9 +44,7 @@ public class Ball : MonoBehaviour
         Vector2 normalDir    = GetCollisionNormal(col);
         Vector2 currentDir   = _rigidbody.velocity.normalized;
         Vector2 reflectedDir = Vector2.Reflect(currentDir, normalDir);
-#if UNITY_EDITOR
-        Debug.Log($"{reflectedDir} = {currentDir}, {normalDir}");
-#endif
+        
         _rigidbody.velocity  = reflectedDir * _speed;
     }
     
