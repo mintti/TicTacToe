@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Game.Title
 {
-    public class RoomInfo : MonoBehaviour
+    public class Room : MonoBehaviour
     {
         [Header("Info")]
         [SerializeField] private Button          _selectBTN;

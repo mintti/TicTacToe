@@ -1643,8 +1643,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286414205
+  m_fontColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3936,6 +3936,7 @@ MonoBehaviour:
   _roomPrefab: {fileID: 8350673384227990027, guid: d20b81fb934670f4ea13f3e691be6841, type: 3}
   _roomListTr: {fileID: 630523531}
   _connectShieldObj: {fileID: 214453403}
+  _connectinfoTMP: {fileID: 597128946}
   _multiRoomPopupOpenBTN: {fileID: 2064545899}
   _multiRoomPopupCloseBTN: {fileID: 1266274001}
   _admissionBTN: {fileID: 1470770681}
