@@ -10,14 +10,9 @@ namespace Game
         [ReadOnly, SerializeField] private float _moveX;
         [SerializeField]           private float _speed;
 
-        private MovementHandler _handler;
         private bool            _canMoveLeft = true;
         private bool            _canMoveRight = true;
 
-        public void Init()
-        {
-            _handler = new();
-        }
 
         public void SetMove(EMoveType eMove)
         {

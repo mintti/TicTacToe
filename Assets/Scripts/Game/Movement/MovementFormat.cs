@@ -4,7 +4,7 @@ namespace Game.Server
 {
     public struct MovementFormat
     {
-        public int       PlayerIndex;
-        public EMoveType EMoveType;
+        public string     Name;
+        public EMoveType  EMoveType;
     }
 }

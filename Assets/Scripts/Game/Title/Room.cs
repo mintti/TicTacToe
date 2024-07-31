@@ -12,6 +12,8 @@ namespace Game.Title
         [SerializeField] private TextMeshProUGUI _roomNameTMP;
         [SerializeField] private Outline         _outline;
 
+        public string RoomName => _roomNameTMP.text;
+
         private MultiRoomManager _manager;
         private bool _selected = false;
         public bool Selected

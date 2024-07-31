@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace Game.Controller
 {
-    public enum Controller
+    public enum EController
     {
         None,
         Keyboard,
@@ -15,18 +15,18 @@ namespace Game.Controller
     public class PlayerController : MonoBehaviour
     {
         [Header("Setting")]
-        [SerializeField] private Controller     _eController;
-        [SerializeField] private MovementHandler _movement;
-
+        [SerializeField] private EController     eEController;
+        [SerializeField] private MovementHandler _handler;
+        
         public void Init()
         {
             IController controller = null;
-            switch (_eController)
+            switch (eEController)
             {
-                case Controller.Keyboard :
+                case EController.Keyboard :
                     controller = transform.AddComponent<KeyboardController>();
                     break;
-                case Controller.Mouse :
+                case EController.Mouse :
                     controller = transform.AddComponent<MouseController>();
                     break;
                 default:
@@ -34,8 +34,8 @@ namespace Game.Controller
                     break;
             }
             
-            _movement.Init();
-            controller?.Init(_movement);
+            _handler.Init();
+            controller?.Init(_handler);
         }
     }
 }

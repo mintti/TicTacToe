@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Game.Title
@@ -114,14 +115,13 @@ namespace Game.Title
         /// </summary>
         private void CreateRoom()
         {
-            if (CreateRoomOnServer())
-            {
-                // [TODO] 게임 씬으로 이동 필요
-                return;
-            }
+            string roomName = _inputField.text;
             
-            Debug.Log("방 만들기 실패");
-            CloseNewRoomPopup();
+            if (!CreateRoomOnServer(roomName))
+            {
+                Debug.Log("방 만들기 실패");
+                CloseNewRoomPopup();
+            }
         }
         
         /// <summary>
@@ -129,10 +129,8 @@ namespace Game.Title
         /// </summary>
         /// <param name="roomName"></param>
         /// <returns></returns>
-        private bool CreateRoomOnServer()
+        private bool CreateRoomOnServer(string roomName)
         {
-            string roomName = _inputField.text;
-            
             RoomOptions roomOptions = new RoomOptions();
             roomOptions.MaxPlayers = 4;
 
@@ -143,6 +141,7 @@ namespace Game.Title
             roomOptions.CustomRoomPropertiesForLobby = new string[] { "RoomName" };
 
             bool result = PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
+            
             return result;
         }
 
@@ -172,11 +171,22 @@ namespace Game.Title
 
             if (selectedRoom != null)
             {
-                // [TODO] 게임 씬 이동
+                PhotonNetwork.JoinRoom(selectedRoom.RoomName);
                 return;
             }
             
             Debug.Log("방이 선택되지 않았음");
+        }
+        
+
+        private void LoadGameScene()
+        {
+            SceneManager.LoadScene("GameScene");
+        }
+        
+        public override void OnJoinedRoom()
+        {
+            LoadGameScene();
         }
         
         #region  Multi Room Popup Related

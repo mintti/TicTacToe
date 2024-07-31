@@ -1,16 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
+using Game.Controller;
+using Game.Server;
+using Photon.Pun;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Ball : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float       _speed;
     [SerializeField] private Vector2     _defaultDir;
+    
+    private GameManager _gameManager;
+    private Vector3 _initPos;
 
-    public void Init()
+    private void Start()
     {
+        _initPos = transform.position;
+    }
+
+    public void Init(GameManager gameManager)
+    {
+        _gameManager = gameManager;
+        if (!PhotonNetwork.IsMasterClient) _defaultDir *= -1;
+    }
+
+    public void StartMove()
+    {
+        transform.position = _initPos;
         _rigidbody.velocity = _defaultDir.normalized * _speed;
     }
 
@@ -27,7 +47,8 @@ public class Ball : MonoBehaviour
         }
         else if (col.CompareTag("DeathZone"))
         {
-            Debug.Log("패배");
+            var player = col.GetComponent<DeathZone>().PlayerInfo;
+            _gameManager.Lose(player);
         }
     }
     
